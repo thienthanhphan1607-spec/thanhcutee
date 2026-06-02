@@ -1,0 +1,1202 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thế Giới Di Động Premium</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Plus Jakarta Sans',sans-serif;
+    }
+
+    body{
+      background:#f3f4f6;
+      color:#111827;
+      transition:.3s;
+    }
+
+    body.dark{
+      background:#0f172a;
+      color:white;
+    }
+
+    header{
+      background:#ffd400;
+      padding:15px 40px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      box-shadow:0 5px 20px rgba(0,0,0,.1);
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:800;
+    }
+
+    .search-box{
+      width:40%;
+      position:relative;
+    }
+
+    .search-box input{
+      width:100%;
+      padding:12px 15px;
+      border:none;
+      border-radius:12px;
+      outline:none;
+      font-size:16px;
+    }
+
+    .theme-btn{
+      background:black;
+      color:white;
+      border:none;
+      padding:10px 15px;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:18px;
+    }
+
+    .hero{
+      height:350px;
+      background:linear-gradient(135deg,#ffd400,#ff9800);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:black;
+      padding:20px;
+    }
+
+    .hero h1{
+      font-size:50px;
+      margin-bottom:15px;
+    }
+
+    .hero p{
+      font-size:20px;
+    }
+
+    .filter{
+      padding:20px 40px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .filter button{
+      border:none;
+      padding:10px 20px;
+      border-radius:30px;
+      cursor:pointer;
+      background:white;
+      font-weight:700;
+      transition:.3s;
+    }
+
+    .filter button:hover{
+      background:#ffd400;
+    }
+
+    .products{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      padding:20px 40px 50px;
+    }
+
+    .card{
+      background:white;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 10px 25px rgba(0,0,0,.1);
+      transition:.3s;
+      position:relative;
+    }
+
+    body.dark .card{
+      background:#1e293b;
+      color:white;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+    }
+
+    .card img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:20px;
+    }
+
+    .card h3{
+      font-size:22px;
+      margin-bottom:10px;
+    }
+
+    .price{
+      color:#e11d48;
+      font-size:24px;
+      font-weight:800;
+      margin-bottom:15px;
+    }
+
+    .btn{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:12px;
+      background:#ffd400;
+      font-weight:800;
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .btn:hover{
+      background:#ff9800;
+      color:white;
+    }
+
+    .cart{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      background:#111827;
+      color:white;
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:28px;
+      cursor:pointer;
+      box-shadow:0 10px 25px rgba(0,0,0,.3);
+    }
+
+    .cart-count{
+      position:absolute;
+      top:-5px;
+      right:-5px;
+      background:red;
+      color:white;
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      font-size:12px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .cart-panel{
+      position:fixed;
+      right:-400px;
+      top:0;
+      width:350px;
+      height:100%;
+      background:white;
+      box-shadow:-10px 0 25px rgba(0,0,0,.2);
+      padding:20px;
+      transition:.4s;
+      z-index:2000;
+      overflow:auto;
+    }
+
+    body.dark .cart-panel{
+      background:#1e293b;
+      color:white;
+    }
+
+    .cart-panel.active{
+      right:0;
+    }
+
+    .cart-item{
+      display:flex;
+      gap:10px;
+      margin:15px 0;
+      align-items:center;
+    }
+
+    .cart-item img{
+      width:70px;
+      height:70px;
+      object-fit:cover;
+      border-radius:10px;
+    }
+
+    .total{
+      font-size:24px;
+      font-weight:800;
+      margin-top:20px;
+    }
+
+    .checkout{
+      margin-top:20px;
+      width:100%;
+      padding:15px;
+      border:none;
+      background:#22c55e;
+      color:white;
+      font-size:18px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:800;
+    }
+
+    .success{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.8);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:3000;
+    }
+
+    .success-box{
+      background:white;
+      padding:40px;
+      border-radius:20px;
+      text-align:center;
+      width:90%;
+      max-width:400px;
+    }
+
+    .success-box h2{
+      color:#22c55e;
+      margin-bottom:15px;
+    }
+
+    @media(max-width:768px){
+      header{
+        flex-direction:column;
+        gap:15px;
+      }
+
+      .search-box{
+        width:100%;
+      }
+
+      .hero h1{
+        font-size:36px;
+      }
+
+      .products{
+        grid-template-columns:repeat(2,1fr);
+        padding:15px;
+      }
+
+      .card img{
+        height:180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🟨 Thế Giới Di Động</div>
+
+  <div class="search-box">
+    <input type="text" id="search" placeholder="Bạn tìm gì hôm nay...">
+  </div>
+
+  <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>SIÊU SALE CÔNG NGHỆ 2026</h1>
+    <p>iPhone • Laptop • Tablet • Smartwatch • Phụ kiện</p>
+  </div>
+</section>
+
+<section class="filter">
+  <button onclick="filterProducts('all')">Tất cả</button>
+  <button onclick="filterProducts('phone')">Điện thoại</button>
+  <button onclick="filterProducts('laptop')">Laptop</button>
+  <button onclick="filterProducts('watch')">Smartwatch</button>
+</section>
+
+<section class="products" id="products"></section>
+
+<div class="cart" onclick="toggleCart()">
+  🛒
+  <div class="cart-count" id="cartCount">0</div>
+</div>
+
+<div class="cart-panel" id="cartPanel">
+  <h2>Giỏ hàng</h2>
+
+  <div id="cartItems"></div>
+
+  <div class="total">
+    Tổng: <span id="total">0</span>₫
+  </div>
+
+  <button class="checkout" onclick="checkout()">
+    Thanh toán
+  </button>
+</div>
+
+<div class="success" id="success">
+  <div class="success-box">
+    <h2>🎉 Đặt hàng thành công</h2>
+    <p>Cảm ơn bạn đã mua hàng tại Thế Giới Di Động</p>
+  </div>
+</div>
+
+<script>
+  const products = [
+    {
+      id:1,
+      name:"iPhone 15 Pro Max",
+      price:32990000,
+      category:"phone",
+      image:"https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=1000"
+    },
+
+    {
+      id:2,
+      name:"Samsung Galaxy S24",
+      price:24990000,
+      category:"phone",
+      image:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000"
+    },
+
+    {
+      id:3,
+      name:"MacBook Air M3",
+      price:28990000,
+      category:"laptop",
+      image:"https://images.unsplash.com/photo-1517336714739-489689fd1ca8?q=80&w=1000"
+    },
+
+    {
+      id:4,
+      name:"Asus ROG Gaming",
+      price:35990000,
+      category:"laptop",
+      image:"https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?q=80&w=1000"
+    },
+
+    {
+      id:5,
+      name:"Apple Watch Ultra",
+      price:19990000,
+      category:"watch",
+      image:"https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1000"
+    },
+
+    {
+      id:6,
+      name:"Xiaomi Watch",
+      price:3990000,
+      category:"watch",
+      image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000"
+    }
+  ];
+
+  const productContainer = document.getElementById("products");
+  const cartItems = document.getElementById("cartItems");
+  const totalElement = document.getElementById("total");
+  const cartCount = document.getElementById("cartCount");
+
+  let cart = [];
+
+  function renderProducts(data){
+    productContainer.innerHTML = "";
+
+    data.forEach(product=>{
+      productContainer.innerHTML += `
+        <div class="card">
+          <img src="${product.image}">
+          <div class="card-content">
+            <h3>${product.name}</h3>
+            <div class="price">${product.price.toLocaleString()}₫</div>
+
+            <button class="btn" onclick="addToCart(${product.id})">
+              Thêm vào giỏ
+            </button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  renderProducts(products);
+
+  function filterProducts(category){
+    if(category === "all"){
+      renderProducts(products);
+    }else{
+      const filtered = products.filter(p=>p.category===category);
+      renderProducts(filtered);
+    }
+  }
+
+  document.getElementById("search").addEventListener("input",e=>{
+    const value = e.target.value.toLowerCase();
+
+    const filtered = products.filter(product=>
+      product.name.toLowerCase().includes(value)
+    );
+
+    renderProducts(filtered);
+  });
+
+  function addToCart(id){
+    const product = products.find(p=>p.id===id);
+
+    cart.push(product);
+
+    updateCart();
+  }
+
+  function updateCart(){
+    cartItems.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach(item=>{
+      total += item.price;
+
+      cartItems.innerHTML += `
+        <div class="cart-item">
+          <img src="${item.image}">
+          <div>
+            <h4>${item.name}</h4>
+            <p>${item.price.toLocaleString()}₫</p>
+          </div>
+        </div>
+      `;
+    });
+
+    totalElement.innerText = total.toLocaleString();
+    cartCount.innerText = cart.length;
+  }
+
+  function toggleCart(){
+    document.getElementById("cartPanel")
+      .classList.toggle("active");
+  }
+
+  function toggleTheme(){
+    document.body.classList.toggle("dark");
+  }
+
+  function checkout(){
+    document.getElementById("success").style.display="flex";
+
+    cart = [];
+    updateCart();
+
+    setTimeout(()=>{
+      document.getElementById("success").style.display="none";
+    },3000);
+  }
+</script>
+
+</body>
+</html><header>
+  <div class="logo">🟨 Thế Giới Di Động</div>
+
+  <div class="menu">
+    <a href="#">Điện thoại</a>
+    <a href="#">Laptop</a>
+    <a href="#">Tablet</a>
+    <a href="#">Phụ kiện</a>
+  </div>
+
+  <div class="search-box">
+    <input type="text" id="search" placeholder="Bạn tìm gì hôm nay...">
+  </div>
+
+  <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+  <button class="login-btn" onclick="alert('Chức năng đăng nhập demo')">Đăng nhập</button>
+</header>
+<button onclick="applyVoucher()" class="checkout">
+Nhập mã giảm giá
+</button>
+
+<button onclick="checkout()" class="checkout" style="background:#22c55e;">
+  Thanh toán
+</button>
+
+ 
+      <div class="cart-item">
+        <img src="${i.image}">
+        <div>
+       <!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Store Pro Max Ultra</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f3f4f6;transition:.3s}
+body.dark{background:#0f172a;color:white}
+
+/* HEADER */
+header{
+  background:#ffd400;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 20px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{font-weight:900;font-size:20px}
+
+.menu{display:flex;gap:15px}
+.menu a{text-decoration:none;color:black;font-weight:700}
+
+.search input{
+  padding:8px;
+  border:none;
+  border-radius:8px;
+}
+
+/* BUTTON */
+button{
+  cursor:pointer;
+  border:none;
+  padding:8px 12px;
+  font-weight:700;
+  border-radius:8px;
+}
+
+.login-btn{background:#111;color:white}
+.theme-btn{background:white}
+
+/* HERO */
+.hero{
+  padding:60px;
+  text-align:center;
+  background:linear-gradient(135deg,#ffd400,#ff9800);
+}
+
+/* PRODUCTS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+body.dark .card{background:#1e293b;color:white}
+
+.card img{width:100%;height:150px;object-fit:cover}
+
+.card-body{padding:10px}
+
+.price{color:red;font-weight:800;margin:5px 0}
+
+.add{width:100%;background:#ffd400}
+
+/* CART */
+.cart-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#111;
+  color:white;
+  width:60px;height:60px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+
+.cart-panel{
+  position:fixed;
+  right:-350px;
+  top:0;
+  width:320px;
+  height:100%;
+  background:white;
+  padding:15px;
+  transition:.3s;
+  overflow:auto;
+  z-index:2000;
+}
+
+body.dark .cart-panel{background:#1e293b}
+
+.cart-panel.active{right:0}
+
+.cart-item{
+  display:flex;
+  gap:10px;
+  margin:10px 0;
+  align-items:center;
+}
+
+.cart-item img{
+  width:60px;height:60px;border-radius:8px
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-box{
+  background:white;
+  padding:20px;
+  width:300px;
+  border-radius:10px;
+}
+
+.modal-box input{
+  width:100%;
+  padding:8px;
+  margin:5px 0;
+}
+
+.toast{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  background:#22c55e;
+  color:white;
+  padding:10px;
+  border-radius:8px;
+  display:none;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:20px;
+  background:#111;
+  color:white;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🟨 TGDD PRO MAX</div>
+
+  <div class="menu">
+    <a href="#">Điện thoại</a>
+    <a href="#">Laptop</a>
+    <a href="#">Tablet</a>
+  </div>
+
+  <div class="search">
+    <input id="search" placeholder="Tìm kiếm..." oninput="search()">
+  </div>
+
+  <button class="login-btn" onclick="openLogin()">Đăng nhập</button>
+  <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+</header>
+
+<div class="hero">
+  <h1>SIÊU SALE 2026</h1>
+  <p>iPhone - Samsung - Laptop - Gaming</p>
+</div>
+
+<div class="products" id="products"></div>
+
+<div class="cart-btn" onclick="toggleCart()">🛒</div>
+
+<div class="cart-panel" id="cart">
+  <h2>Giỏ hàng</h2>
+  <div id="cartItems"></div>
+  <p><b>Tổng:</b> <span id="total">0</span>₫</p>
+
+  <button onclick="applyVoucher()" style="width:100%;background:#f59e0b;color:white;margin-top:10px">
+    Nhập mã giảm giá
+  </button>
+
+  <button onclick="checkout()" style="width:100%;background:#22c55e;color:white;margin-top:10px">
+    Thanh toán
+  </button>
+</div>
+
+<!-- LOGIN -->
+<div class="modal" id="login">
+  <div class="modal-box">
+    <h3>Đăng nhập</h3>
+    <input placeholder="User">
+    <input type="password" placeholder="Password">
+    <button onclick="loginOk()">Login</button>
+    <button onclick="closeLogin()" style="background:#ccc">Close</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+  © 2026 TGDD PRO MAX ULTRA
+</footer>
+
+<script>
+const products=[
+{id:1,name:"iPhone 15 Pro",price:30000000,img:"https://images.unsplash.com/photo-1695048133142-1a20484d2569"},
+{id:2,name:"Samsung S24",price:24000000,img:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf"},
+{id:3,name:"MacBook M3",price:28000000,img:"https://images.unsplash.com/photo-1517336714739-489689fd1ca8"}
+];
+
+let cart=[];
+let discount=0;
+
+function showToast(msg){
+  let t=document.getElementById("toast");
+  t.innerText=msg;
+  t.style.display="block";
+  setTimeout(()=>t.style.display="none",2000);
+}
+
+function render(data){
+  let html="";
+  data.forEach(p=>{
+    html+=`
+      <div class="card">
+        <img src="${p.img}">
+        <div class="card-body">
+          <h3>${p.name}</h3>
+          <p class="price">${p.price.toLocaleString()}₫</p>
+          <button class="add" onclick="add(${p.id})">Thêm</button>
+        </div>
+      </div>
+    `;
+  });
+  document.getElementById("products").innerHTML=html;
+}
+render(products);
+
+function add(id){
+  let p=products.find(x=>x.id===id);
+  let f=cart.find(i=>i.id===id);
+
+  if(f) f.qty++;
+  else cart.push({...p,qty:1});
+
+  updateCart();
+  showToast("Đã thêm sản phẩm");
+}
+
+function updateCart(){
+  let html="";
+  let total=0;
+
+  cart.forEach((i,index)=>{
+    total+=i.price*i.qty;
+
+    html+=`
+      <div class="cart-item">
+        <img src="${i.img}">
+        <div>
+          <b>${i.name}</b>
+          <p>${i.price.toLocaleString()}₫ x ${i.qty}</p>
+          <button onclick="removeItem(${index})">Xóa</button>
+        </div>
+      </div>
+    `;
+  });
+
+  total=total-total*discount;
+
+  document.getElementById("cartItems").innerHTML=html;
+  document.getElementById("total").innerText=total.toLocaleString();
+}
+
+function removeItem(i){
+  cart.splice(i,1);
+  updateCart();
+}
+
+function toggleCart(){
+  document.getElementById("cart").classList.toggle("active");
+}
+
+function search(){
+  let v=document.getElementById("search").value.toLowerCase();
+  render(products.filter(p=>p.name.toLowerCase().includes(v)));
+}
+
+function toggleTheme(){
+  document.body.classList.toggle("dark");
+}
+
+function applyVoucher(){
+  let code=prompt("Nhập mã:");
+  if(code==="TGDD2026"){
+    discount=0.1;
+    showToast("Giảm 10% thành công");
+  }else showToast("Sai mã");
+  updateCart();
+}
+
+function checkout(){
+  if(cart.length===0) return showToast("Giỏ trống");
+
+  showToast("Thanh toán thành công");
+  cart=[];
+  updateCart();
+}
+
+function openLogin(){
+  document.getElementById("login").style.display="flex";
+}
+
+function closeLogin(){
+  document.getElementById("login").style.display="none";
+}
+
+function loginOk(){
+  showToast("Đăng nhập thành công");
+  closeLogin();
+}
+</script>
+
+</body>
+</html><script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let body = document.body;
+    body.removeChild(body.lastElementChild);
+  });
+</script><!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thế Giới Di Động - Mọi người cũng tìm kiếm</title>
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f3f3f3;
+            color: #333;
+            padding: 10px 0;
+        }
+
+        /* --- HEADER SIMULATION --- */
+        header {
+            background-color: #ffd400;
+            padding: 12px 0;
+            margin-bottom: 15px;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 18px;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .header-menu {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        .header-menu a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px 25px;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+
+        /* --- SECTION: MỌI NGƯỜI CŨNG TÌM KIẾM --- */
+        .popular-searches {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 12px;
+        }
+
+        .search-tag {
+            font-size: 13px;
+            color: #4a4a4a;
+            text-decoration: none;
+            background-color: #f1f1f1;
+            padding: 6px 14px;
+            border-radius: 4px;
+            transition: all 0.15s ease-in-out;
+        }
+
+        .search-tag:hover {
+            background-color: #e0e0e0;
+            color: #288ad6;
+        }
+
+        /* Đường chia cắt mảnh */
+        .divider {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 25px 0;
+        }
+
+        /* --- SECTION: FOOTER THÔNG TIN --- */
+        .footer-grid {
+display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .footer-col h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .footer-list {
+            list-style: none;
+        }
+
+        .footer-list li {
+            font-size: 13px;
+            line-height: 24px;
+            margin-bottom: 6px;
+            color: #4a4a4a;
+        }
+
+        .footer-list li a {
+            color: #288ad6;
+            text-decoration: none;
+        }
+
+        .footer-list li a:hover {
+            text-decoration: underline;
+        }
+
+        .phone-num {
+            font-weight: bold;
+            color: #288ad6;
+        }
+
+        .view-more {
+            color: #288ad6;
+            font-size: 13px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        /* Lưới các thương hiệu thành viên */
+        .brand-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .brand-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+            height: 32px;
+            border-radius: 4px;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .topzone { background-color: #111; }
+        .dienmayxanh { background-color: #126caf; }
+        .bachhoaxanh { background-color: #008848; }
+        .ankhang { background-color: #005a9e; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 576px) {
+            .header-container { flex-direction: column; gap: 10px; }
+            .search-box { width: 100%; margin: 5px 0; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">thegioididong</a>
+            <div class="search-box">
+                <input type="text" placeholder="Vivo X300 Ultra">
+            </div>
+            <div class="header-menu">
+                <a href="#">Đăng nhập</a>
+                <a href="#">Giỏ hàng</a>
+                <a href="#">Hồ Chí Minh</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        
+        <section class="popular-searches">
+            <h2 class="section-title">Mọi người cũng tìm kiếm</h2>
+            <div class="tags-container">
+                <a href="#" class="search-tag">laptop</a>
+                <a href="#" class="search-tag">tai nghe</a>
+                <a href="#" class="search-tag">đồng hồ</a>
+<a href="#" class="search-tag">pc</a>
+                <a href="#" class="search-tag">macbook</a>
+                <a href="#" class="search-tag">dell</a>
+                <a href="#" class="search-tag">asus</a>
+                <a href="#" class="search-tag">điện thoại xiaomi</a>
+                <a href="#" class="search-tag">orient star</a>
+                <a href="#" class="search-tag">loa marshall</a>
+                <a href="#" class="search-tag">loa jbl</a>
+                <a href="#" class="search-tag">đồng hồ movado</a>
+                
+                <a href="#" class="search-tag">laptop gaming</a>
+                <a href="#" class="search-tag">chuột gaming</a>
+                <a href="#" class="search-tag">đồng hồ đôi</a>
+                <a href="#" class="search-tag">laptop đồ họa</a>
+                <a href="#" class="search-tag">iphone 15</a>
+                <a href="#" class="search-tag">iphone 16</a>
+                <a href="#" class="search-tag">iphone 17</a>
+                <a href="#" class="search-tag">lenovo legion</a>
+                <a href="#" class="search-tag">lenovo thinkpad</a>
+                
+                <a href="#" class="search-tag">macbook pro m5</a>
+                <a href="#" class="search-tag">ipad pro m5</a>
+                <a href="#" class="search-tag">asus tuf gaming</a>
+                <a href="#" class="search-tag">iphone 17 pro</a>
+                <a href="#" class="search-tag">iphone 17 256gb</a>
+                <a href="#" class="search-tag">iphone 17 pro max</a>
+                <a href="#" class="search-tag">macbook neo</a>
+                <a href="#" class="search-tag">jbl charge 5</a>
+                
+                <a href="#" class="search-tag">dell g15 5530</a>
+                <a href="#" class="search-tag">macbook air m5</a>
+                <a href="#" class="search-tag">msi katana 15</a>
+                <a href="#" class="search-tag">garmin fenix 8</a>
+                <a href="#" class="search-tag">garmin forerunner 55</a>
+                <a href="#" class="search-tag">máy lọc nước</a>
+                <a href="#" class="search-tag">iPhone 16 Plus</a>
+                
+                <a href="#" class="search-tag">iPhone 16 Pro Max</a>
+                <a href="#" class="search-tag">iPhone 16e</a>
+                <a href="#" class="search-tag">tủ lạnh</a>
+                <a href="#" class="search-tag">samsung galaxy s26</a>
+                <a href="#" class="search-tag">samsung galaxy s26 plus</a>
+                <a href="#" class="search-tag">samsung galaxy s26 ultra</a>
+                <a href="#" class="search-tag">iphone 17e</a>
+                
+                <a href="#" class="search-tag">điện thoại tecno</a>
+                <a href="#" class="search-tag">honor magic v5</a>
+                <a href="#" class="search-tag">xiaomi poco f8 pro</a>
+                <a href="#" class="search-tag">điện thoại gập</a>
+<a href="#" class="search-tag">samsung s25</a>
+                <a href="#" class="search-tag">OPPO Find X9 Ultra</a>
+                <a href="#" class="search-tag">OPPO Find X9s</a>
+                <a href="#" class="search-tag">Xiaomi 17T</a>
+                
+                <a href="#" class="search-tag">Xiaomi 17T Pro</a>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <footer class="footer-grid">
+            <div class="footer-col">
+                <h3>Tổng đài hỗ trợ</h3>
+                <ul class="footer-list">
+                    <li>Gọi mua: <a href="tel:1900232460" class="phone-num">1900.232.460</a> (8:00 - 21:30)</li>
+                    <li>Khiếu nại: <a href="tel:18001062" class="phone-num">1800.1062</a> (8:00 - 21:30)</li>
+                    <li>Bảo hành: <a href="tel:1900232464" class="phone-num">1900.232.464</a> (8:00 - 21:00)</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Về công ty</h3>
+                <ul class="footer-list">
+                    <li><a href="#">Giới thiệu công ty (MWG.vn)</a></li>
