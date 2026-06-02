@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Đăng Nhập</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background-color: white;
+        }
+
+        .login{
+            width: 300px;
+            margin: 100px auto;
+            border: 12px solid green;
+            padding: 30px;
+        }
+
+        h1{
+            margin-bottom: 20px;
+        }
+
+        input[type=text],
+        input[type=password]{
+            width: 100%;
+            height: 35px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-bottom: 2px solid pink;
+            outline: none;
+        }
+
+        .btn{
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        label{
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login">
+
+        <h1>Đăng nhập</h1>
+
+        <input type="text" placeholder="Tên đăng nhập">
+
+        <input type="password" placeholder="Mật khẩu">
+
+        <!-- Giới tính -->
+        <input type="radio" name="gioitinh">
+        <label>Nam</label>
+        <br>
+
+        <input type="radio" name="gioitinh" checked>
+        <label>Nữ</label>
+
+        <br><br>
+
+        <input type="checkbox">
+        <label>Lưu giá trị đăng nhập</label>
+
+        <br><br>
+
+        <button class="btn">Đăng nhập</button>
+
+    </div>
+
+</body>
+</html>
