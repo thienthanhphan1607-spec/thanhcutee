@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đăng nhập - Kỳ thi THPT</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#eef2f7;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      padding:20px;
+    }
+
+    .container{
+      width:1000px;
+      background:#fff;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .header{
+      background:linear-gradient(to right,#004aad,#0066ff);
+      color:#fff;
+      padding:25px 35px;
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .header img{
+      width:50px;
+    }
+
+    .header h2{
+      font-size:18px;
+      font-weight:bold;
+      line-height:1.5;
+    }
+
+    .content{
+      display:flex;
+    }
+
+    .left,
+    .right{
+      width:50%;
+      padding:35px;
+    }
+
+    .right{
+      border-left:1px solid #ddd;
+    }
+
+    h3{
+      color:#1d3f8f;
+      font-size:20px;
+      margin-bottom:25px;
+      letter-spacing:2px;
+    }
+
+    .form-group{
+      margin-bottom:18px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:8px;
+      font-size:15px;
+      font-weight:600;
+      color:#333;
+    }
+
+    label span{
+      color:red;
+    }
+
+    input{
+      width:100%;
+      padding:14px;
+      border:1px solid #ddd;
+      border-radius:10px;
+      font-size:15px;
+      outline:none;
+    }
+
+    input:focus{
+      border-color:#0066ff;
+    }
+
+    .captcha-box{
+      display:flex;
+      align-items:center;
+      gap:15px;
+      margin-bottom:18px;
+    }
+
+    .captcha{
+      border:1px solid #ddd;
+      padding:12px 25px;
+      border-radius:10px;
+      font-size:30px;
+      letter-spacing:6px;
+      font-family: "Courier New", monospace;
+      background:#fff;
+    }
+
+    .reload{
+      font-size:30px;
+      color:#1d4ed8;
+      cursor:pointer;
+    }
+
+    .forgot{
+      color:#1d4ed8;
+      font-size:14px;
+      text-decoration:none;
+      display:inline-block;
+      margin-bottom:20px;
+    }
+
+    .btn{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:10px;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      margin-bottom:15px;
+    }
+
+    .btn-login{
+      background:#0057d9;
+      color:#fff;
+    }
+
+    .btn-login:hover{
+      background:#0047b3;
+    }
+
+    .btn-service{
+      background:#fff;
+      border:1px solid #ccc;
+      color:#333;
+    }
+
+    .notify{
+      color:#444;
+      line-height:1.8;
+      font-size:17px;
+    }
+
+    .notify p{
+      margin-bottom:20px;
+    }
+
+    @media(max-width:900px){
+      .content{
+        flex-direction:column;
+      }
+
+      .left,
+      .right{
+        width:100%;
+      }
+
+      .right{
+        border-left:none;
+        border-top:1px solid #ddd;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
+
+      <h2>
+        BỘ GIÁO DỤC VÀ ĐÀO TẠO <br>
+        KỲ THI TỐT NGHIỆP THPT
+      </h2>
+    </div>
+
+    <div class="content">
+
+      <!-- LEFT -->
+      <div class="left">
+
+        <h3>ĐĂNG NHẬP</h3>
+
+        <div class="form-group">
+          <label>Số CCCD/CMND/ĐDCN <span>(*)</span></label>
+          <input type="text" placeholder="Số CCCD/CMND/ĐDCN">
+        </div>
+
+        <div class="form-group">
+          <label>Mã đăng nhập <span>(*)</span></label>
+          <input type="password" placeholder="Mã đăng nhập">
+        </div>
+
+        <div class="captcha-box">
+          <div class="captcha">5FJP0</div>
+          <div class="reload">↻</div>
+        </div>
+
+        <div class="form-group">
+          <label>Mã xác nhận <span>(*)</span></label>
+          <input type="text" placeholder="Mã xác nhận">
+        </div>
+
+        <a href="#" class="forgot">Quên mã đăng nhập ?</a>
+
+        <button class="btn btn-login">Đăng nhập</button>
+
+        <button class="btn btn-service">
+          Đăng nhập Cổng dịch vụ công quốc gia
+        </button>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+
+        <h3>THÔNG BÁO</h3>
+
+        <div class="notify">
+          <p>
+            Thí sinh đăng ký dự thi (ĐKDT) trực tuyến để xét công
+            nhận tốt nghiệp chính thức trên hệ thống từ ngày
+            24/04/2026 đến 17h00 ngày 05/05/2026.
+          </p>
+
+          <p>
+            Thí sinh tự do (đã tốt nghiệp THPT, trung cấp) chỉ đăng ký
+            xét tuyển nộp phiếu đăng ký dự thi để xét tuyển về các
+            điểm TNHS để các điểm TNHS nhập thông tin lên hệ thống từ
+            ngày 1/5/2026 đến ngày 20/5/2026.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
