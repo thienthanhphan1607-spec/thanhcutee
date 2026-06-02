@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAYLIST PHAN MẠNH QUỲNH</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            padding: 10px;
+        }
+
+        /* Khung bao bọc toàn bộ trang web giống ảnh */
+        .wrapper {
+            border: 1px solid #000;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+
+        /* Vùng Tiêu đề (Header) */
+        header {
+            background-color: #fcebd2;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid #000;
+        }
+
+        header h1 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 14px;
+        }
+
+        /* Thanh Điều hướng (Navigation) */
+        nav {
+            text-align: center;
+            padding: 10px;
+            border-bottom: 1px solid #000;
+            font-size: 14px;
+        }
+
+        nav a {
+            color: blue;
+            text-decoration: underline;
+            margin: 0 5px;
+            font-weight: bold;
+        }
+
+        /* Khu vực nội dung chính chia làm 3 cột */
+        .main-container {
+            display: flex;
+            min-height: 450px;
+        }
+
+        /* Cột trái: Danh sách bài hát */
+        .sidebar-left {
+            width: 20%;
+            background-color: #faf4e8;
+            padding: 20px 15px;
+            border-right: 1px solid #000;
+        }
+
+        .sidebar-left h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .playlist-links {
+            list-style: none;
+        }
+
+        .playlist-links li {
+            margin-bottom: 15px;
+        }
+
+        .playlist-links a {
+            color: purple;
+            text-decoration: underline;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        /* Thêm viền đen cho bài hát đang chọn giống trong ảnh mẫu */
+        .playlist-links a.active {
+            border: 1px solid #000;
+            padding: 2px 5px;
+            color: purple;
+        }
+
+        /* Cột giữa: Trình phát Video Youtube */
+        .video-content {
+            width: 60%;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Tỷ lệ khung hình 16:9 */
+            height: 0;
+            background-color: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Cột phải: Thông tin giới thiệu */
+        .sidebar-right {
+            width: 20%;
+            padding: 20px 15px;
+            border-left: 1px solid #000;
+            font-size: 13px;
+            line-height: 1.6;
+            text-align: justify;
+            overflow-y: auto;
+            max-height: 480px;
+        }
+
+        /* Chân trang (Footer) */
+        footer {
+            background-color: #fcebd2;
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid #000;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Header -->
+    <header>
+        <h1>PLAYLIST PHANMANHQUYNH</h1>
+        <p>DA25TTC</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#">TRANG CHỦ</a> || <a href="#">GIỚI THIỆU</a> || <a href="#">LIÊN HỆ</a>
+    </nav>
+
+    <!-- Main Body -->
+    <div class="main-container">
+        <!-- Cột trái: Playlist -->
+        <aside class="sidebar-left">
+            <h2>PLAYLIST</h2>
+            <ul class="playlist-links">
+                <!-- BẠN DÁN LINK YOUTUBE CỦA BẠN VÀO TRONG DẤU NHÁY ĐƠN Ở DƯỚI ĐÂY -->
+                <li><a class="active" onclick="playYoutubeLink('https://youtu.be/pjWwRNEz61o?si=cxEuJl6ZPoYTGZjj', this)">1. Tri Kỷ</a></li>
+                <li><a onclick="playYoutubeLink('https://youtu.be/vciMg0s-Gos?si=0sDmcbzaVBWvBJ7R', this)">2. Xuân Thì</a></li>
+                <li><a onclick="playYoutubeLink('https://youtu.be/mzqvF_rIOx8?si=bxrWoXIna1C6_kHG', this)">3. Sau Lời Từ Khước</a></li>
+                <li><a onclick="playYoutubeLink('https://youtu.be/_aghWPzkB7M?si=eyEHoikXbaLaUSkU', this)">4. Ngày Chưa Giông Bão</a></li>
+            </ul>
+        </aside>
+
+        <!-- Cột giữa: Trình phát Video -->
+        <main class="video-content">
+            <div class="video-wrapper">
+                <!-- Mặc định khi mở trang web sẽ load bài đầu tiên -->
+                <iframe id="youtube-player" src="" allowfullscreen></iframe>
+            </div>
+        </main>
+
+        <!-- Cột phải: Tiểu sử ca sĩ -->
+        <aside class="sidebar-right">
+            <p>Phan Mạnh Quỳnh (sinh ngày 10 tháng 1 năm 1990) là một nam ca sĩ kiêm sáng tác nhạc người Việt Nam. Anh bắt đầu được biết đến qua "Vợ người ta", bài hát sở hữu hơn 100 triệu lượt xem trên kênh YouTube và là từ khóa được tìm kiếm nhiều nhất tại Việt Nam năm 2015, theo thống kê của Google. Năm 2016, anh tạo bước ngoặt khi tham dự chương trình Bài hát hay nhất mùa 1. Anh còn được biết đến với vai trò là một nhạc sĩ cộng tác thành công với Mỹ Tâm, Bùi Lan Hương, Hà Anh Tuấn và Phạm Quỳnh Anh.</p>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        @CRE BY: KIM HUỲNH THẢO VY
+    </footer>
+</div>
+
+<!-- Script xử lý tự động bóc tách và phát link Youtube trực tiếp -->
+<script>
+    // Hàm trích xuất ID từ link Youtube đầy đủ bất kỳ (watch?v= hoặc biệt dạng rút gọn youtu.be)
+    function getYoutubeId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    function playYoutubeLink(url, element) {
+        const videoId = getYoutubeId(url);
+        if (videoId) {
+            // Thay đổi video hiển thị trong iframe
+            document.getElementById('youtube-player').src = "https://www.youtube.com/embed/" + videoId;
+            
+            // Xử lý đổi class active để tạo viền đen xung quanh bài đang phát giống ảnh mẫu
+            let links = document.querySelectorAll('.playlist-links a');
+            links.forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
+        } else {
+            alert("Đường link Youtube không hợp lệ, bạn hãy kiểm tra lại nhé!");
+        }
+    }
+
+    // Tự động kích hoạt phát bài hát đầu tiên ngay khi tải trang xong
+    window.onload = function() {
+        const firstSong = document.querySelector('.playlist-links a');
+        if(firstSong) {
+            firstSong.click();
+        }
+    };
+</script>
+
+</body>
+</html>
